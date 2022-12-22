@@ -26,6 +26,7 @@
   "dependencies": {
     "@unique-nft/accounts": "^0.3.4",
     "@unique-nft/sdk": "^0.2.3",
+    "@unique-nft/solidity-interfaces": "^0.40.0-beta.0",
     "@unique-nft/utils": "^0.3.2"
   },
   "scripts": {

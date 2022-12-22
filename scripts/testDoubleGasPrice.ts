@@ -8,9 +8,10 @@ import {ExtensionTools} from '@unique-nft/utils/extension'
 
 
 import * as dotenv from 'dotenv'
+import {UniqueNFTFactory, CollectionHelpersFactory, ContractHelpersFactory} from "@unique-nft/solidity-interfaces";
 
 import {
-  CollectionHelpers__factory, UniqueNFT__factory
+  Test__factory, Test
 } from '../typechain-types'
 
 import {ContractReceipt, Wallet} from 'ethers'
@@ -52,7 +53,7 @@ async function main() {
 
   const wallet = await warmup()
 
-  const collectionHelpers = CollectionHelpers__factory.connect('0x6C4E9fE1AE37a41E93CEE429e8E1881aBdcbb54F', wallet)
+  const collectionHelpers = await CollectionHelpersFactory(wallet)
 
   //////////////////////////////////
   // create collection
@@ -76,7 +77,7 @@ async function main() {
   console.log(`Created collection ${collectionId}: ${collectionAddress}`)
   logPriceAndGas(txResult)
 
-  const collection = await UniqueNFT__factory.connect(collectionAddress, wallet)
+  const collection = await UniqueNFTFactory(collectionAddress, wallet)
 
   ////////////////////////////////////////////////////////////////////
   // mint two tokens - without and with gas price being explicitly set
